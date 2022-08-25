@@ -54,4 +54,3 @@ class Board:
         if num < 10:
             s = '0' + s
         return s
-        
