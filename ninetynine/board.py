@@ -24,8 +24,34 @@ class Board:
         if is_num_legal and is_empty:
             self.spaces[(x, y)]['color'] = color
 
-    
+    def check_if_won(self):
+        """Checks if a given move won the game"""
+        # Check spaces around you, if any are same color keep going that direction
+        pass
+
     def to_text(self):
         """Make a good representation for display on page as text here"""
-        pass
+        text = ''
+        # ys first
+        for y in range(1, 11):
+            # xs second
+            text += '-' * 10 * 10 + '-'
+            text += '\n' 
+            for x in range(1, 11):
+                space = self.spaces[(x, y)]
+                color = space['color']
+                num = self.equal_width_int_string(space['num'])
+                text += f'| {num} {color} '
+            text += '|\n'
+        text += '-' * 10 * 10 + '-'
+        print(text)
+        return(text.replace('\n', '<br/>'))
+    
+    def equal_width_int_string(self, num):
+        if num is None:
+            return 'XX'
+        s = str(num)
+        if num < 10:
+            s = '0' + s
+        return s
         
