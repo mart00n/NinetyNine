@@ -7,6 +7,8 @@ name = "pypi"
 pandas = "*"
 flask = "*"
 pytest = "*"
+setuptools = "*"
+ninetynine = {editable = true, path = "."}
 
 [dev-packages]
 
