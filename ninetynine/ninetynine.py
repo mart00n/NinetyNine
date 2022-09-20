@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, redirect, url_for
 from ninetynine.board import Board
 from ninetynine.deck import Deck
 from ninetynine.hand import Hand
@@ -33,7 +33,13 @@ def play():
     x = int(request.args.get('x'))
     y = int(request.args.get('y'))
     board.play(x, y, color, num)
-    return board.to_text()
+    return redirect(url_for('show_gameboard'))
+
+@app.route("/playpost", methods=['POST'])
+def playpost():
+    """Play a card and claim a space"""
+    board.play(**request.get_json())
+    return redirect(url_for('show_gameboard'))
 
 @app.route("/reset", methods=['POST'])
 def reset():
